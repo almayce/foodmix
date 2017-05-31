@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="appwork.almayce.foodmix.view.FridgeActivity">
+
+        <ImageView
+            android:scaleType="centerCrop"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/back1" />
+
+        <ImageView
+            android:scaleType="centerCrop"
+            android:id="@+id/ivFridge"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/fridge1_titled" />
+
+        <RelativeLayout
+            android:id="@+id/rlPanel"
+            android:visibility="invisible"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_centerHorizontal="true"
+                android:layout_above="@+id/gvItems"
+                android:background="@drawable/title_back"
+                android:id="@+id/til1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+
+                <AutoCompleteTextView
+                    android:id="@+id/actvSearch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:completionThreshold="2"
+                    android:hint="поиск"
+                    android:imeOptions="actionDone"
+                    android:inputType="text"
+                    android:maxLines="1" />
+            </android.support.design.widget.TextInputLayout>
+
+                <GridView
+                    android:layout_centerInParent="true"
+                    android:id="@+id/gvItems"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:horizontalSpacing="5dp"
+                    android:numColumns="2"
+                    android:verticalSpacing="8dp">
+                </GridView>
+
+            <TextView
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/gvItems"
+                android:id="@+id/tvSwipeMessage"
+                android:visibility="invisible"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimary"
+                android:text="Проведите вниз, чтобы увидеть рецепты"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+
+
+
+
+    </RelativeLayout>
+</layout>
+
