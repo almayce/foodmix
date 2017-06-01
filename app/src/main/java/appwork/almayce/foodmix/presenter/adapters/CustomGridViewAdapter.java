@@ -2,6 +2,7 @@ package appwork.almayce.foodmix.presenter.adapters;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,9 +21,11 @@ import io.reactivex.schedulers.Schedulers;
 public class CustomGridViewAdapter extends BaseAdapter {
 
     private Context context;
+    private DisplayMetrics displayMetrics;
 
-    public CustomGridViewAdapter(Context context) {
+    public CustomGridViewAdapter(Context context, DisplayMetrics displayMetrics) {
         this.context = context;
+        this.displayMetrics = displayMetrics;
 
         IngredientsDataBase.changedIngredients.getOnAddObservable()
                 .subscribeOn(Schedulers.newThread())
@@ -52,12 +55,19 @@ public class CustomGridViewAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+        float translation = generateTranslation(-50, 50);
+
         ItemBinding binding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.item, parent, false);
         convertView = binding.getRoot();
+        binding.rlItemContainer.getLayoutParams().height = displayMetrics.heightPixels/8;
+
         binding.rlItem.setBackgroundResource(IngredientsDataBase.changedIngredients.get(position).getImageId());
-        binding.rlItem.setTranslationX(generateTranslation(-50, 50));
+        binding.rlItem.setTranslationX(translation);
         binding.rlItem.setOnClickListener(v -> IngredientsDataBase.changedIngredients.remove(position));
+
         binding.tvItem.setText(IngredientsDataBase.changedIngredients.get(position).getShortName());
+        binding.tvItem.setTranslationX(translation);
+
         return convertView;
     }
 

@@ -66,11 +66,13 @@ public class FridgeActivity extends MvpAppCompatActivity implements FridgeView, 
         binding.ivFridge.setOnClickListener(v -> fridgePresenter.onFridgeClick());
 
         // 2.43
-        binding.til1.getLayoutParams().width = (int) (displayMetrics.heightPixels / 2.43);
-        binding.tvSwipeMessage.getLayoutParams().width = (int) (displayMetrics.heightPixels / 2.43);
-        binding.gvItems.getLayoutParams().width = (int) (displayMetrics.heightPixels / 2.43);
-        binding.gvItems.getLayoutParams().height = (int) (displayMetrics.heightPixels / 2.43);
-        binding.gvItems.setAdapter(new CustomGridViewAdapter(this));
+        int h = (int) (displayMetrics.heightPixels / 2.43);
+        binding.til1.getLayoutParams().width = h;
+        binding.tvSwipeMessage.getLayoutParams().width = h;
+        binding.gvItems.getLayoutParams().width = h;
+        binding.gvItems.getLayoutParams().height = h;
+        binding.gvItems.setVerticalSpacing(displayMetrics.heightPixels / 71);
+        binding.gvItems.setAdapter(new CustomGridViewAdapter(this, displayMetrics));
 
         binding.rlPanel.setOnTouchListener(swipeDetector);
 
