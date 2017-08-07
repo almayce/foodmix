@@ -54,6 +54,7 @@ public class BlenderPresenter extends MvpPresenter<BlenderView> {
                 publishProgress(R.drawable.blender2);
                 sleep(1000);
                 publishProgress(R.drawable.blender3);
+                getViewState().playSound();
                 sleep(1000);
                 return null;
             }

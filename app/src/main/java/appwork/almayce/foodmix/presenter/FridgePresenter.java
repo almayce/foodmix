@@ -5,13 +5,18 @@ import android.os.AsyncTask;
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
 
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 import appwork.almayce.foodmix.R;
+//import appwork.almayce.foodmix.model.firebase.FirebaseReader;
+import appwork.almayce.foodmix.model.firebase.FirebaseReader;
+import appwork.almayce.foodmix.model.ingredients.Ingredient;
 import appwork.almayce.foodmix.model.ingredients.IngredientsDataBase;
-import appwork.almayce.foodmix.model.recipes.RecipesFinder;
 import appwork.almayce.foodmix.view.FridgeView;
+import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
 /**
@@ -22,18 +27,56 @@ import io.reactivex.schedulers.Schedulers;
 public class FridgePresenter extends MvpPresenter<FridgeView> {
 
     public FridgePresenter() {
+        FirebaseReader.getInstance().init();
 
         IngredientsDataBase.changedIngredients.getOnAddObservable()
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(ingredient -> onSwitchSwipeMessageVisibility());
+                .subscribe(new Observer<Ingredient>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(Ingredient ingredient) {
+                        onSwitchSwipeMessageVisibility();
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
 
         IngredientsDataBase.changedIngredients.getOnRemoveObservable()
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(ingredient -> {
-                    onSwitchSwipeMessageVisibility();
-                    getViewState().removeSnack(ingredient.getShortName());
+                .subscribe(new Observer<Ingredient>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(Ingredient ingredient) {
+                        getViewState().removeSnack(ingredient.getShortName());
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
                 });
     }
 
@@ -66,8 +109,8 @@ public class FridgePresenter extends MvpPresenter<FridgeView> {
         IngredientsDataBase.changedIngredients.resurrect();
     }
 
-    public String[] getAll() {
-        return IngredientsDataBase.getAll().keySet().toArray(new String[IngredientsDataBase.getAll().size()]);
+    public ArrayList getAllNames() {
+        return IngredientsDataBase.getAllNames();
     }
 
     public void onSearchListItemClick(String name) {

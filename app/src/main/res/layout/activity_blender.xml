@@ -9,7 +9,7 @@
             android:scaleType="centerCrop"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/back1" />
+            android:src="@drawable/back3" />
 
         <RelativeLayout
             android:id="@+id/rlScene"
@@ -20,13 +20,13 @@
                 android:layout_centerHorizontal="true"
                 android:layout_alignParentTop="true"
                 android:id="@+id/ivItem"
-                android:layout_width="80dp"
-                android:layout_height="80dp" />
+                android:layout_width="100dp"
+                android:layout_height="100dp" />
         </RelativeLayout>
 
         <ImageView
+            android:layout_centerHorizontal="true"
             android:id="@+id/ivBlender"
-            android:layout_marginBottom="60dp"
             android:layout_alignParentBottom="true"
             android:layout_width="wrap_content"
             android:layout_height="250dp"

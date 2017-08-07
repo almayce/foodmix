@@ -2,6 +2,7 @@
     <string name="app_name">foodmix</string>
 
     <string-array name="kind">
+        <item>выберите тип блюда: </item>
         <item>супы</item>
         <item>горячее</item>
         <item>салаты</item>

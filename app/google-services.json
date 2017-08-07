@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "886309434742",
+    "firebase_url": "https://foodmix-709b7.firebaseio.com",
+    "project_id": "foodmix-709b7",
+    "storage_bucket": "foodmix-709b7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:886309434742:android:18b4555e9e145df6",
+        "android_client_info": {
+          "package_name": "appwork.almayce.foodmix"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "886309434742-drvvov3d9ucvsh3d9mo0lsb29630vsb9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "appwork.almayce.foodmix",
+            "certificate_hash": "f83b038d775b805beb619f278a86c1a24d04e84e"
+          }
+        },
+        {
+          "client_id": "886309434742-8ra0qgm8e246vv7shou033qj5j3oufdt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyChMQHHv-w_JRczzTsz_vNZwMRkXtXVgAQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "886309434742-8ra0qgm8e246vv7shou033qj5j3oufdt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

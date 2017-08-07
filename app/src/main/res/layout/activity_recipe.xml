@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+
+    <RelativeLayout
+
+        android:layout_width="match_parent" android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@color/colorAccent"
+            android:scaleType="centerCrop"/>
+
+        <appwork.almayce.foodmix.view.customviews.CustomTextView
+            android:id="@+id/tvTitle"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/colorYellowTrans"
+            android:textSize="@dimen/textSize"
+            android:text="Отправка рецепта"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+        <Spinner
+            android:id="@+id/spKind"
+            android:layout_below="@+id/tvTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/kind">
+        </Spinner>
+
+
+        <android.support.design.widget.TextInputLayout
+            android:background="@color/colorYellowTrans"
+            android:layout_below="@+id/spKind"
+            android:layout_above="@+id/btSend"
+            android:id="@+id/til1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <EditText
+                android:inputType="textMultiLine"
+                android:id="@+id/etRecipe"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="введите рецепт"
+                />
+
+
+        </android.support.design.widget.TextInputLayout>
+
+        <Button
+            android:layout_alignParentBottom="true"
+            android:id="@+id/btSend"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="отправить"/>
+    </RelativeLayout>
+
+</layout>

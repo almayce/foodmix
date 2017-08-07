@@ -13,4 +13,5 @@ public interface BlenderView extends MvpView{
     void addAnimatedImageView(int imageId);
     void setImage(int imageId);
     void startNextActivity();
+    void playSound();
 }

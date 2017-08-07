@@ -1,7 +1,5 @@
 package appwork.almayce.foodmix.model.ingredients;
 
-import android.graphics.drawable.Drawable;
-
 /**
  * Created by almayce on 30.05.17.
  */

@@ -9,9 +9,12 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
 import appwork.almayce.foodmix.R;
-import appwork.almayce.foodmix.databinding.ItemBinding;
+import appwork.almayce.foodmix.databinding.GvItemBinding;
+import appwork.almayce.foodmix.model.ingredients.Ingredient;
 import appwork.almayce.foodmix.model.ingredients.IngredientsDataBase;
+import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
 /**
@@ -30,12 +33,52 @@ public class CustomGridViewAdapter extends BaseAdapter {
         IngredientsDataBase.changedIngredients.getOnAddObservable()
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(ingredient -> notifyDataSetChanged());
+                .subscribe(new Observer<Ingredient>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(Ingredient ingredient) {
+                        notifyDataSetChanged();
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
 
         IngredientsDataBase.changedIngredients.getOnRemoveObservable()
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(ingredient -> notifyDataSetChanged());
+                .subscribe(new Observer<Ingredient>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(Ingredient ingredient) {
+                        notifyDataSetChanged();
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
     }
 
     @Override
@@ -54,16 +97,21 @@ public class CustomGridViewAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        float translation = generateTranslation(-50, 50);
+    public View getView(final int position, View convertView, ViewGroup parent) {
+        float translation = generateTranslation(-20, 20);
 
-        ItemBinding binding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.item, parent, false);
+        GvItemBinding binding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.gv_item, parent, false);
         convertView = binding.getRoot();
-        binding.rlItemContainer.getLayoutParams().height = displayMetrics.heightPixels/8;
+        binding.rlItemContainer.getLayoutParams().height = displayMetrics.heightPixels / 8;
 
         binding.rlItem.setBackgroundResource(IngredientsDataBase.changedIngredients.get(position).getImageId());
         binding.rlItem.setTranslationX(translation);
-        binding.rlItem.setOnClickListener(v -> IngredientsDataBase.changedIngredients.remove(position));
+        binding.rlItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                IngredientsDataBase.changedIngredients.remove(position);
+            }
+        });
 
         binding.tvItem.setText(IngredientsDataBase.changedIngredients.get(position).getShortName());
         binding.tvItem.setTranslationX(translation);
@@ -72,6 +120,6 @@ public class CustomGridViewAdapter extends BaseAdapter {
     }
 
     public float generateTranslation(int min, int max) {
-        return (float) (Math.random()*(max - min)) + min;
+        return (float) (Math.random() * (max - min)) + min;
     }
 }
